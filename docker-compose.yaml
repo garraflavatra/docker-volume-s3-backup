@@ -4,16 +4,22 @@
 # $ docker compose up -d --build --force-recreate
 
 services:
-  test:
-    build: test_image
+  test_image:
+    build: ./test_image
     volumes:
       - data:/data
 
   backup:
     build: .
     env_file: .env
+    volumes:
+      - data:/data/testdir
     environment:
+      BACKUP_NAME: backup-test
       SCHEDULE: '* * * * *'
       BACKUP_KEEP_DAYS: 7
       PASSPHRASE: passphrase
       S3_PREFIX: backup-test
+
+volumes:
+  data:

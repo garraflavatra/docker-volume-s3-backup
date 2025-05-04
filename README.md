@@ -19,17 +19,21 @@ services:
 
   volume_backup:
     image: smartyellow/docker-volume-s3-backup
+    volumes:
+      data:/data/folder1
     environment:
-      SCHEDULE: '@weekly'     # optional
-      BACKUP_KEEP_DAYS: 7     # optional
-      PASSPHRASE: passphrase  # optional
-      S3_REGION: region
-      S3_ACCESS_KEY_ID: key
-      S3_SECRET_ACCESS_KEY: secret
-      S3_BUCKET: my-bucket
-      S3_PREFIX: backup
+      BACKUP_NAME: myvolume         # required
+      SCHEDULE: '@weekly'           # optional
+      BACKUP_KEEP_DAYS: 7           # optional
+      PASSPHRASE: passphrase        # optional
+      S3_REGION: region             # or set S3_ENDPOINT if you do not use AWS
+      S3_ACCESS_KEY_ID: key         # alias S3_ACCESS_KEY
+      S3_SECRET_ACCESS_KEY: secret  # alias S3_SECRET_KEY
+      S3_BUCKET: my-bucket          # required
+      S3_PREFIX: backup             # required
 ```
 
+- You can mount as many folders into `/data` as you like. Everything in `/data` is copied to your S3 storage in a single `.tar.gz`.
 - The `SCHEDULE` variable determines backup frequency. See go-cron schedules documentation [here](http://godoc.org/github.com/robfig/cron#hdr-Predefined_schedules). Omit to run the backup immediately and then exit.
 - If `PASSPHRASE` is provided, the backup will be encrypted using GPG.
 - Run `docker exec <container_name> sh backup.sh` to trigger a backup ad-hoc.

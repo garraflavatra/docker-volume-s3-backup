@@ -6,7 +6,7 @@ set -o pipefail
 source ./env.sh
 
 echo "Creating backup..."
-tar -xzf dump.tar.gz /data
+tar -czf dump.tar.gz /data
 
 timestamp=$(date +"%Y-%m-%dT%H:%M:%S")
 s3_uri_base="s3://${S3_BUCKET}/${S3_PREFIX}/${BACKUP_NAME}_${timestamp}.dump"
