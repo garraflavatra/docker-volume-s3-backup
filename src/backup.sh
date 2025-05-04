@@ -9,7 +9,7 @@ echo "Creating backup..."
 tar -czf dump.tar.gz /data
 
 timestamp=$(date +"%Y-%m-%dT%H:%M:%S")
-s3_uri_base="s3://${S3_BUCKET}/${S3_PREFIX}/${BACKUP_NAME}_${timestamp}.dump"
+s3_uri_base="s3://${S3_BUCKET}/${S3_PREFIX}/${BACKUP_NAME}_${timestamp}.tar.gz"
 
 if [ -n "$PASSPHRASE" ]; then
   echo "Encrypting backup..."
