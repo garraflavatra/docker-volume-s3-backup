@@ -18,7 +18,7 @@ services:
       data:/app/some-data-dir
 
   volume_backup:
-    image: smartyellow/docker-volume-s3-backup
+    image: garraflavatra/docker-volume-s3-backup
     volumes:
       data:/data/folder1
     environment:
@@ -67,7 +67,7 @@ docker exec <container_name> sh restore.sh <timestamp>
 
 ### Run a simple test environment with Docker Compose
 ```sh
-cp template.env .env
+cp .env.example .env
 # fill out your secrets/params in .env
 docker compose up -d
 ```
