@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 set -u # `-e` omitted intentionally, but i can't remember why exactly :'(
 set -o pipefail
