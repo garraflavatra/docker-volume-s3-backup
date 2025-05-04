@@ -42,22 +42,19 @@ services:
 
 ### Restore
 
-> [!NOTE]
-> The restore command is yet to be ported from the original restore script from [`eeshugerman/postgres-backup-s3`](https://github.com/eeshugerman/postgres-backup-s3). Contributions are welcome :)
-
 > [!CAUTION]
-> DATA LOSS! All folder content will be dropped and re-created.
+> All existing files will be replaced by the backup content!
 
-#### ... from latest backup
+#### From latest backup
 
 ```sh
 docker exec <container_name> sh restore.sh
 ```
 
 > [!NOTE]
-> If your bucket has more than a 1000 files, the latest may not be restored -- only one S3 `ls` command is used
+> If your bucket has over 1000 files, the latest may not be restored – the S3 `ls` command is issued only once.
 
-#### ... from specific backup
+#### From specific backup
 
 ```sh
 docker exec <container_name> sh restore.sh <timestamp>
@@ -65,7 +62,8 @@ docker exec <container_name> sh restore.sh <timestamp>
 
 ## Development
 
-### Run a simple test environment with Docker Compose
+You can use the Docker Compose file in the root with your own S3 bucket for development and testing.
+
 ```sh
 cp .env.example .env
 # fill out your secrets/params in .env
