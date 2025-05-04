@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project provides a Docker image that periodically backs up a Docker volume to AWS S3, and can restore a backup as needed.
+This project provides a Docker image that periodically backs up a Docker volume to AWS S3 as a gzipped tape archive, and can restore a backup as needed.
 
 ## Usage
 
@@ -38,8 +38,11 @@ services:
 
 ### Restore
 
+> [!NOTE]
+> The restore command is yet to be ported from the original restore script from [`eeshugerman/postgres-backup-s3`](https://github.com/eeshugerman/postgres-backup-s3). Contributions are welcome :)
+
 > [!CAUTION]
-> DATA LOSS! All database objects will be dropped and re-created.
+> DATA LOSS! All folder content will be dropped and re-created.
 
 #### ... from latest backup
 
