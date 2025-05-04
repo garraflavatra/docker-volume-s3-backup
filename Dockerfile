@@ -22,6 +22,6 @@ ENV BACKUP_KEEP_DAYS ''
 ADD src/run.sh run.sh
 ADD src/env.sh env.sh
 ADD src/backup.sh backup.sh
-# ADD src/restore.sh restore.sh  -- not ready yet
+ADD src/restore.sh restore.sh
 
 CMD ["sh", "run.sh"]
